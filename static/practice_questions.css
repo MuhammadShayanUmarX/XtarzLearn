@@ -1,0 +1,51 @@
+/* Practice Questions Section Styles */
+#questionsSection {
+    /* original width and margin styles, if any, go here */
+}
+.feature-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(40, 167, 69, 0.10);
+    padding: 2rem 2.5rem;
+    margin-bottom: 1.5rem;
+    transition: box-shadow 0.2s;
+}
+.feature-card:hover {
+    box-shadow: 0 8px 32px rgba(40, 167, 69, 0.16);
+}
+.feature-icon {
+    font-size: 2.4rem;
+    color: #28a745;
+    margin-bottom: 0.7rem;
+    background: linear-gradient(90deg, #28a745 0%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+.result-area {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin-top: 1.2rem;
+    min-height: 80px;
+}
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+}
+.spinner {
+    width: 30px;
+    height: 30px;
+    border: 4px solid #e0e0e0;
+    border-top: 4px solid #28a745;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

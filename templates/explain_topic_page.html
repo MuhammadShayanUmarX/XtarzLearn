@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='explain_topic.css') }}">{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="explain-topic-section">
+        {% include 'sections/explain_topic.html' %}
+    </div>
+</div>
+{% endblock %}

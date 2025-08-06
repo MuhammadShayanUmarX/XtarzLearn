@@ -1,0 +1,64 @@
+<!-- Summarize Text Section -->
+<div class="summarize-section">
+    <div class="summarize-card">
+        <div class="text-center mb-4">
+            <i class="fas fa-compress-alt summarize-icon"></i>
+            <h2 class="mb-3">Summarize Text</h2>
+            <p class="text-muted mb-4">Create concise summaries of long texts and articles with AI-powered summarization.</p>
+        </div>
+        
+        <form id="summarizeForm">
+            <div class="mb-4">
+                <label for="summarizeText" class="form-label fw-semibold">Text to Summarize</label>
+                <textarea class="form-control form-control-lg" id="summarizeText" rows="6" 
+                    placeholder="Paste your text here (minimum 100 characters)..." required></textarea>
+                <div class="form-text">Enter the text you want to summarize (minimum 100 characters)</div>
+            </div>
+            
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <label for="summaryType" class="form-label fw-semibold">Summary Type</label>
+                    <select class="form-select form-select-lg" id="summaryType">
+                        <option value="comprehensive" selected>Comprehensive Summary</option>
+                        <option value="brief">Brief Summary</option>
+                        <option value="key_points">Key Points</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="summaryLength" class="form-label fw-semibold">Summary Length</label>
+                    <select class="form-select form-select-lg" id="summaryLength">
+                        <option value="short">Short (25% of original)</option>
+                        <option value="medium" selected>Medium (50% of original)</option>
+                        <option value="long">Long (75% of original)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="fas fa-file-alt me-2"></i> Generate Summary
+                </button>
+            </div>
+        </form>
+        
+        <div class="summarize-loading" id="summarizeLoading" style="display: none;">
+            <div class="spinner"></div>
+            <p class="mt-3 mb-0 text-muted">Analyzing your text and generating a concise summary...</p>
+        </div>
+        
+        <div class="summarize-result mt-4" id="summarizeResult" style="display: none;">
+            <h3 class="mb-3">Generated Summary</h3>
+            <div class="summary-content"></div>
+            <div class="summary-meta mt-4">
+                <span class="text-muted">Original length: <span class="fw-medium original-length">0</span> words</span>
+                <span class="text-muted">Summary: <span class="fw-medium summary-length">0</span> words</span>
+                <span class="text-muted">Reduction: <span class="fw-medium reduction-percent">0</span>%</span>
+            </div>
+        </div>
+        
+        <div class="summarize-error mt-3" id="summarizeError" style="display: none;">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <span class="error-message">An error occurred while generating the summary. Please try again.</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<!-- Practice Questions Section - Updated Structure -->
+<section class="practice-questions-section" id="questionsSection">
+    <div class="container">
+        <div class="feature-card">
+            <div class="text-center">
+                <i class="fas fa-question-circle feature-icon"></i>
+                <h3>Practice Questions</h3>
+                <p>Generate practice questions to test your understanding and reinforce learning.</p>
+            </div>
+            <form id="questionsForm">
+                <div class="form-group">
+                    <label for="questionTopic" class="form-label">Topic</label>
+                    <input type="text" class="form-control" id="questionTopic" placeholder="e.g., Python Programming, Physics, Literature" required>
+                </div>
+                <div class="form-group">
+                    <label for="questionCount" class="form-label">Number of Questions</label>
+                    <input type="number" class="form-control" id="questionCount" value="5" min="1" max="20">
+                </div>
+                <div class="form-group">
+                    <label for="questionTypes" class="form-label">Question Types</label>
+                    <select class="form-select" id="questionTypes" multiple>
+                        <option value="multiple_choice" selected>Multiple Choice</option>
+                        <option value="true_false" selected>True/False</option>
+                        <option value="short_answer" selected>Short Answer</option>
+                        <option value="essay">Essay</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="fas fa-question"></i> Generate Questions
+                </button>
+            </form>
+            <div class="loading" id="questionsLoading">
+                <div class="spinner"></div>
+                <p class="mt-2">Generating practice questions...</p>
+            </div>
+            <div id="questionsResult" class="result-area" style="display: none;"></div>
+        </div>
+    </div>
+</section>
