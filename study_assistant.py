@@ -74,6 +74,21 @@ class StudyAssistant:
         except Exception as e:
             return f"<div class='alert alert-danger'>Error summarizing text: {str(e)}</div>"
     
+    def generate_assignment(self, assignment_name, details, output_format="Report", word_count="", reference_content=""):
+        """Generate a custom assignment based on user requirements"""
+        prompt = PROMPTS["assignment_prompt"].format(
+            assignment_name=assignment_name,
+            details=details,
+            output_format=output_format,
+            word_count=word_count if word_count else "No specific length requirement",
+            reference_content=reference_content if reference_content else "No reference files provided"
+        )
+        try:
+            response = self.model.generate_content(prompt)
+            return response.text
+        except Exception as e:
+            return f"<div class='alert alert-danger'>Error generating assignment: {str(e)}</div>"
+    
     def interactive_study_session(self):
         """Run an interactive study session"""
         print("🎓 Welcome to Study Assistant!")

@@ -4,7 +4,7 @@
         <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
             <img src="{{ url_for('static', filename='logo-1.png') }}" 
             alt="XtarzLearn Logo" 
-            style="height: 3rem; width: 3rem; margin-right: 0.5rem; vertical-align: middle;" />
+            style="height: 5rem; width: 5rem; margin-right: 0.5rem; vertical-align: middle;" />
     <span class="brand-animate">XtarzLearn</span>
 </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +26,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('summarize_page') }}">Summarize</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('assignment_input_page') }}">Assignment Input</a>
                 </li>
             </ul>
         </div>

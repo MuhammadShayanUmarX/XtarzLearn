@@ -32,7 +32,24 @@
                 <div class="spinner"></div>
                 <p class="mt-2">Creating your study guide...</p>
             </div>
-            <div id="guideResult" class="result-area" style="display: none;"></div>
+            <div id="guideResult" class="result-area" style="display: none;">
+                <!-- Fixed position download button -->
+                <div style="position: fixed; top: 80px; right: 20px; z-index: 1000;">
+                    <button id="downloadPdfBtn" class="btn btn-danger btn-lg shadow">
+                        <i class="fas fa-file-pdf me-2"></i> DOWNLOAD PDF
+                    </button>
+                </div>
+                
+                <!-- Main content area -->
+                <div id="pdfContent" class="mt-5 pt-4"></div>
+                
+                <!-- Additional download button at bottom -->
+                <div class="text-center mt-4 mb-4">
+                    <button id="downloadPdfBtnBottom" class="btn btn-primary btn-lg">
+                        <i class="fas fa-file-pdf me-2"></i> Download Study Guide as PDF
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </section>

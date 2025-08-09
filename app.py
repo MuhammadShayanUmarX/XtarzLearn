@@ -2,11 +2,25 @@ from flask import Flask, render_template, request, jsonify
 from study_assistant import StudyAssistant
 import os
 from dotenv import load_dotenv
+from werkzeug.utils import secure_filename
 
 # Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
+
+# Configure upload settings
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx', 'doc'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
+
+# Create upload directory if it doesn't exist
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Initialize Study Assistant
 try:
@@ -36,6 +50,10 @@ def explain_topic_page():
 @app.route('/summarize')
 def summarize_page():
     return render_template('summarize_page.html')
+
+@app.route('/assignment-input')
+def assignment_input_page():
+    return render_template('assignment_input_page.html')
 
 @app.route('/create_guide', methods=['POST'])
 def create_guide():
@@ -115,5 +133,64 @@ def summarize_text():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/submit_assignment', methods=['POST'])
+def submit_assignment():
+    """Handle assignment form submission"""
+    if not assistant:
+        return jsonify({'error': 'Study Assistant not available'}), 500
+    
+    try:
+        # Get form data
+        assignment_name = request.form.get('assignment_name', '')
+        details = request.form.get('details', '')
+        output_format = request.form.get('output_format', 'Report')
+        word_count = request.form.get('word_count', '')
+        
+        if not assignment_name or not details:
+            return jsonify({'error': 'Assignment name and details are required'}), 400
+        
+        # Handle file upload
+        uploaded_files = []
+        if 'reference_files' in request.files:
+            files = request.files.getlist('reference_files')
+            for file in files:
+                if file and file.filename != '' and allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                    file.save(file_path)
+                    uploaded_files.append(filename)
+        
+        # Read reference files content if any
+        reference_content = ""
+        if uploaded_files:
+            for filename in uploaded_files:
+                file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        reference_content += f"\n\n--- Content from {filename} ---\n"
+                        reference_content += f.read()
+                except Exception as e:
+                    reference_content += f"\n\n--- Error reading {filename}: {str(e)} ---\n"
+        
+        # Generate the assignment using the proper method
+        result = assistant.generate_assignment(
+            assignment_name=assignment_name,
+            details=details,
+            output_format=output_format,
+            word_count=word_count,
+            reference_content=reference_content
+        )
+        
+        return jsonify({
+            'success': True,
+            'assignment_name': assignment_name,
+            'output_format': output_format,
+            'result': result,
+            'uploaded_files': uploaded_files
+        })
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000) 
+    app.run(debug=True, host='0.0.0.0', port=8000) 

@@ -1,4 +1,99 @@
 /* Study Guide Section Styles */
+/* PDF Download Buttons */
+#downloadPdfBtn, #downloadPdfBtnBottom {
+    transition: all 0.3s ease;
+    border: 2px solid #dc3545;
+    background-color: #dc3545;
+    color: white !important;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#downloadPdfBtn {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#downloadPdfBtnBottom {
+    margin: 20px auto;
+    display: none; /* Initially hidden until content loads */
+}
+
+#downloadPdfBtn:hover, #downloadPdfBtnBottom:hover {
+    background-color: #bb2d3b;
+    border-color: #b02a37;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+#downloadPdfBtn:active, #downloadPdfBtnBottom:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#downloadPdfBtn:hover {
+    background-color: #0d6efd;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+}
+
+#downloadPdfBtn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(13, 110, 253, 0.2);
+}
+
+#pdfContent {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    line-height: 1.6;
+}
+
+#pdfContent h1, 
+#pdfContent h2, 
+#pdfContent h3, 
+#pdfContent h4 {
+    color: #1a1a1a;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#pdfContent p {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+#pdfContent ul, 
+#pdfContent ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+#pdfContent li {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+#pdfContent .highlight {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    border-left: 4px solid #0d6efd;
+}
+
 .study-guide-section {
     padding: 2rem 0;
 }
